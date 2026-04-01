@@ -37,18 +37,19 @@ document.getElementById("quoteForm").addEventListener("submit", function(e){
     formData.append("email", document.getElementById("email").value);
     formData.append("phone", document.getElementById("phone").value);
 
-    fetch(SCRIPT_URL, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors"
-    })
-    .then(() => {
-        status.innerHTML = "✅ Submitted successfully!";
-        document.getElementById("quoteForm").reset();
-    })
-    .catch(() => {
-        status.innerHTML = "❌ Error submitting form";
-    })
+fetch(SCRIPT_URL, {
+    method: "POST",
+    body: formData
+})
+.then(res => res.text())
+.then(data => {
+    console.log("SUCCESS:", data);
+    successMsg.style.display = 'block';
+})
+.catch(error => {
+    console.error("ERROR:", error);
+    errorMsg.style.display = 'block';
+});
     .finally(() => {
         btn.disabled = false;
         btn.innerText = "Submit";
