@@ -456,7 +456,7 @@
 
     <script>
         // ⚠️ REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-        const SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygWsUsjCjRhUNs2M3ov757imkSSYiKZ580eOqNSPX513dB2X03s3LMg_cFr_n8__PV/exec';
 
         // ===== HERO BACKGROUND SLIDER =====
         let heroSlideIndex = 1;
@@ -545,7 +545,7 @@
             successMsg.style.display = 'none';
             errorMsg.style.display = 'none';
             
-            if(SCRIPT_URL === 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE' || SCRIPT_URL === '') {
+            if(SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbygWsUsjCjRhUNs2M3ov757imkSSYiKZ580eOqNSPX513dB2X03s3LMg_cFr_n8__PV/exec' || SCRIPT_URL === '') {
                 errorMsg.style.display = 'block';
                 errorMsg.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 40px; margin-bottom: 10px; display: block;"></i><strong>Setup Required!</strong><br>Please add your Google Apps Script URL in the code (search for SCRIPT_URL).';
                 return;
