@@ -455,8 +455,8 @@
     </footer>
 
     <script>
-        // ⚠️ REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygWsUsjCjRhUNs2M3ov757imkSSYiKZ580eOqNSPX513dB2X03s3LMg_cFr_n8__PV/exec';
+        // ✅ YOUR GOOGLE APPS SCRIPT URL - FIXED
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxXAvzw4zV45FaQ0dbW1KjfQlE2URDytxPOvCsT4Ki5pgPRJY3qYQvs_qbZt9TQ54W7/exec';
 
         // ===== HERO BACKGROUND SLIDER =====
         let heroSlideIndex = 1;
@@ -534,7 +534,7 @@
             }, 100);
         }
 
-        // ===== FORM SUBMISSION WITH DEBUG =====
+        // ===== FORM SUBMISSION - FIXED VALIDATION LOGIC =====
         document.getElementById('quoteForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('quoteSubmitBtn');
@@ -545,12 +545,12 @@
             successMsg.style.display = 'none';
             errorMsg.style.display = 'none';
             
-           // Check if URL is still placeholder or empty
-        if(SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbygWsUsjCjRhUNs2M3ov757imkSSYiKZ580eOqNSPX513dB2X03s3LMg_cFr_n8__PV/exec' || SCRIPT_URL === '') {
-        errorMsg.style.display = 'block';
-        errorMsg.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 40px; margin-bottom: 10px; display: block;"></i><strong>Setup Required!</strong><br>Please add your Google Apps Script URL in the code (search for SCRIPT_URL).';
-    return;
-}
+            // ✅ FIXED: Check if URL is still placeholder or empty
+            if(SCRIPT_URL === 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE' || SCRIPT_URL === '') {
+                errorMsg.style.display = 'block';
+                errorMsg.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 40px; margin-bottom: 10px; display: block;"></i><strong>Setup Required!</strong><br>Please add your Google Apps Script URL in the code (search for SCRIPT_URL).';
+                return;
+            }
             
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i>Sending...';
@@ -575,13 +575,11 @@
             
             fetch(SCRIPT_URL, { 
                 method: 'POST', 
-                body: formData,
-                mode: 'no-cors'  // Add this to prevent CORS errors
+                body: formData
             })
             .then(response => {
                 console.log('Response Status:', response.status);
-                // With no-cors, we can't read the response, but assume success
-                return { result: 'success' };
+                return response.json();
             })
             .then(data => {
                 console.log('Response:', data);
